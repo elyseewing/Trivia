@@ -247,6 +247,16 @@ h1{
   padding: 20px;
 }
 
+#add_new {
+  margin-bottom: 20px;
+}
+
+.errors {
+  margin: 10px;
+  color: red;
+  font-weight: bold;
+}
+
 #footer {
   text-align: center;
 }
