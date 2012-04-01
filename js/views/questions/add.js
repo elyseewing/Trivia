@@ -7,7 +7,6 @@ define([
   'text!templates/questions/add.html'
 ], function($, _, Backbone, questionsModel, questionsCollection, questionAddTemplate) {
   var questionAddView = Backbone.View.extend({
-    el: $("#page"), 
     initialize: function() {
 
     }, 
@@ -17,7 +16,7 @@ define([
 	_: _
       };
       var compiledTemplate = _.template(questionAddTemplate, data);
-      $("#page").html(compiledTemplate);
+      $("body").html(compiledTemplate);
     }, 
 
     events: {

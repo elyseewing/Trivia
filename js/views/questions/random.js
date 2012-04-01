@@ -7,26 +7,19 @@ define([
   'text!templates/questions/random.html'
 ], function($, _, Backbone, questionsModel, questionsCollection, questionRandomTemplate) {
   var questionRandomView = Backbone.View.extend({
-    el: $("#page"), 
     initialize: function() {
-
+      this.collection = questionsCollection;
+      this.collection.bind('all', this.render, this);
+      this.collection.fetch();
     }, 
     render: function() {
       var data = {
-        model: this.getRandom(),
+        model: this.collection.first(),
         $: $,
         _ : _
       };
       var compiledTemplate = _.template(questionRandomTemplate, data);
-      $("#page").html(compiledTemplate);
-    },
-    getRandom: function() {
-        var id = Math.floor((Math.random()*questionsCollection.length)+1);
-        if (questionsCollection.get(id) != null) {
-            return questionsCollection.get(id);
-        } else {
-            this.getRandom();
-        }
+      $("body").html(compiledTemplate);
     },
 
     events: {
@@ -36,12 +29,12 @@ define([
     nextQuestion: function(event) {
       event.preventDefault();
       var data = {
-        model: this.getRandom(),
+        model: this.collection.first(),
         $: $,
         _ : _
       };
       var compiledTemplate = _.template(questionRandomTemplate, data);
-      $("#page").html(compiledTemplate);
+      $("body").html(compiledTemplate);
     }
 
   });

@@ -1,35 +1,13 @@
-<div id="question-detail">
-    <h1><%= model.get('question') %></h1>
+<section id="question">
+  <h1><%= model.get('question') %></h1>
+  <div class="answer">
+    <a class="hidden trigger" href="#answer">Show answer</a>
+    <span class="target"><%= model.get('answer') %></span>
+  </div>
 
-    <a href="#/questions/random" id="reveal">Show answer</a>
-    <div id="answer">
-
-        <h1><%= model.get('answer') %></h1>
-    </div>
-
-    <div id="next">
-        <a href="#/questions/random" id="next-question">Next question</a>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-jQuery(document).ready(function(){
-
-    jQuery("#answer").hide();
-    jQuery("#reveal").show();
-
-    jQuery('#reveal').click(function(event){
-        event.preventDefault();
-        if (jQuery("#answer").css("display") == 'none') {
-            jQuery("#answer").slideDown();
-            jQuery("a#reveal").text('Hide answer');
-        } else {
-            jQuery("#answer").slideUp();
-            jQuery("a#reveal").text('Show answer');
-        }
-    });
-
-});
-
-</script>
+  <a href="" id="next-question">Next question</a>
+</section>
+<footer>
+  <h1>Trivia</h1>
+  <a href="#/questions/add">Add Question</a>
+</footer>
