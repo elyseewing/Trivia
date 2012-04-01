@@ -6,9 +6,13 @@ define([
 ], function($, _, Backbone, questionsModel){
   var questionsCollection = Backbone.Collection.extend({
     model: questionsModel, 
-      url: function() { 
-        return "http://localhost:3000/question/";
-      }
+    url: function() {
+      return "http://localhost:3000/question/";
+    },
+    getRandom: function()
+    {
+        return questionsCollection.get(4);
+    }
   });
  
   return new questionsCollection;

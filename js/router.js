@@ -5,14 +5,16 @@ define([
   'Backbone',
   'views/home/main',
   'views/questions/list',
-  'views/questions/new',
-  'views/questions/show'
-], function($, _, Backbone, mainHomeView, questionListView, questionNewView, questionShowView ){
+  'views/questions/add',
+  'views/questions/show',
+  'views/questions/random'
+], function($, _, Backbone, mainHomeView, questionListView, questionAddView, questionShowView, questionRandomView ){
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes
       "/questions":"showQuestions",
-      "/newQ":"newQuestion",
+      "/questions/random":"randomQuestion",
+      "/questions/add":"newQuestion",
       "/questions/:id":"getQuestion",
       
       // Default
@@ -21,16 +23,17 @@ define([
     showQuestions: function() {
       questionListView.render();
     },
+    randomQuestion: function() {
+      questionRandomView.render();
+    },
     newQuestion: function() {
-      questionNewView.render();
+      questionAddView.render();
     },
     getQuestion: function(id) {
       questionShowView.render(id);
-      //alert("Get question ID " + id);
     },
     defaultAction: function(actions){
-      // We have no matching route, lets display the home page 
-      mainHomeView.render(); 
+      mainHomeView.render();
     }
   });
 

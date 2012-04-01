@@ -7,10 +7,6 @@ define([
       
     },
     urlRoot: "http://localhost:3000/question",
-    defaults: {
-      "id": 0,
-      "question": ""
-    },
     validate: function(attributes) {
       var errors = [];
       if (!/\S/.test(attributes.question))

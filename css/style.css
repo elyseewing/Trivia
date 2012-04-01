@@ -220,7 +220,7 @@ body {
 }
 #menu ul li {
   float: left;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 #menu ul li a {
   color: #fff;
@@ -249,6 +249,34 @@ h1{
 
 #add_new {
   margin-bottom: 20px;
+}
+
+#question-detail {
+    text-align: center;
+    border: 2px solid black;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    height: 300px;
+}
+#question-detail h1 {
+    padding-bottom: 30px;
+}
+#question-detail a {
+    font-size: 16px;
+    color: #660000;
+}
+#question-detail a:hover {
+    text-decoration: none;
+}
+
+#answer {
+    margin-top: 20px;
+}
+
+#next {
+    font-size: 20px;
+    margin-top: 30px;
 }
 
 .errors {
