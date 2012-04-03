@@ -5,24 +5,24 @@ define([
   'Backbone',
   'views/home/main',
   'views/questions/add',
-  'views/questions/show',
+  'views/questions/edit',
   'views/questions/random'
-], function($, _, Backbone, mainHomeView, questionAddView, questionShowView, questionRandomView ){
+], function($, _, Backbone, mainHomeView, questionAddView, questionEditView, questionRandomView ){
   var AppRouter = Backbone.Router.extend({
     routes: {
       ""                    :"randomQuestion",
-      "/questions/random"   :"randomQuestion",
       "/questions/add"      :"newQuestion",
-      //"/questions/:id"    :"getQuestion",
-      
-      // Default
+      "/questions/:id/edit" :"editQuestion",
       "*actions"            :"defaultAction"
     },
     randomQuestion: function() {
-      questionRandomView.render();
+      questionRandomView.initialize();
     },
     newQuestion: function() {
       questionAddView.render();
+    },
+    editQuestion: function(id) {
+      questionEditView.render(id);
     },
     defaultAction: function(actions){
       mainHomeView.render();
@@ -30,6 +30,8 @@ define([
   });
 
   var initialize = function(){
+    $.pushStateEnabled = true;
+
     var app_router = new AppRouter;
     Backbone.history.start();
   };

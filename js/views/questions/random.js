@@ -4,17 +4,22 @@ define([
   'Backbone',
   'models/questions',
   'collections/questions',
-  'text!templates/questions/random.html'
-], function($, _, Backbone, questionsModel, questionsCollection, questionRandomTemplate) {
+  'text!templates/questions/random.html',
+  'views/questions/add',
+  'views/questions/edit'
+], function($, _, Backbone, questionsModel, questionsCollection, questionRandomTemplate, questionAddView, questionEditView ) {
   var questionRandomView = Backbone.View.extend({
+    el: $("body"),
     initialize: function() {
       this.collection = questionsCollection;
-      this.collection.bind('all', this.render, this);
-      this.collection.fetch();
-    }, 
+      _.bindAll(this, 'render');
+      //this.collection.bind('render', this.render, this);
+      this.collection.fetch({success: this.render });
+    },
     render: function() {
       var data = {
-        model: this.collection.first(),
+        // collection.models array only contains one element
+        model: this.collection.models[0],
         $: $,
         _ : _
       };
@@ -29,7 +34,7 @@ define([
     nextQuestion: function(event) {
       event.preventDefault();
       var data = {
-        model: this.collection.first(),
+        model: this.collection.models[0],
         $: $,
         _ : _
       };

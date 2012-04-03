@@ -1,11 +1,13 @@
-<section id="question">
-  <form>
-    <textarea id="question" placeholder="What is this?"><%= model.get('question') %></textarea>
-    <textarea id="answer" placeholder="A Trivia App"><%= model.get('answer') %></textarea>
-    <input type="submit" id="submit" value="Save Question">
+<section id="question-section">
+  <div style="display: none" class="errors"></div>
+  <form class="add-question">
+    <textarea id="question" placeholder="What is this?"></textarea>
+    <textarea id="answer" placeholder="A Trivia App"></textarea>
+    <button id="add">Save Question</button>
+
   </form>
 </section>
 <footer>
   <h1>Trivia</h1>
-  <a href="">View Question</a>
+  <a href="">Random Question</a>
 </footer>

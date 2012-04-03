@@ -4,23 +4,25 @@ define([
   'Backbone',
   'models/questions',
   'collections/questions',
-  'text!templates/questions/show.html'
-], function($, _, Backbone, questionsModel, questionsCollection, questionShowTemplate) {
-  var questionShowView = Backbone.View.extend({
+  'text!templates/questions/edit.html'
+], function($, _, Backbone, questionsModel, questionsCollection, questionEditTemplate) {
+  var questionEditView = Backbone.View.extend({
+    el: $("body"),
     initialize: function() {
-
+        //this.bind('render', this.render, this);
+        //_.bindAll(this, 'render');
     }, 
     render: function(id) {
       var data = {
-        model: questionsCollection.get(id), 
+        model: questionsCollection.get(id),
         _ : _
       };
-      var compiledTemplate = _.template(questionShowTemplate, data);
+      var compiledTemplate = _.template(questionEditTemplate, data);
       $("body").html(compiledTemplate);
     }, 
 
     events: {
-      "submit form#edit-question":"saveQuestion"
+      "click #save":"saveQuestion"
     },
 
     saveQuestion: function(event) {
@@ -33,8 +35,9 @@ define([
         var model = questionsCollection.get(questionID);
         var attributes = { question: modQuestion, answer: modAnswer };
         var options = {
-          success: function() { alert("Question was updated."); },
-
+          success: function() {
+              alert("Question was updated.");
+          },
           error: function(model, errors) {
             $('.errors').html(errors.join("<br/>")).show();
           }
@@ -44,5 +47,5 @@ define([
     }
 
   });
-  return new questionShowView;
+  return new questionEditView;
 });
