@@ -17,16 +17,20 @@ define([
       "*actions"           :"defaultAction"
     },
     randomQuestion: function() {
-      questionRandomView.initialize();
+      var view = new questionRandomView();
+      view.initialize();
     },
     newQuestion: function() {
-      questionAddView.render();
+      var view = new questionAddView();
+      view.render();
     },
     editQuestion: function(id) {
-      questionEditView.render(id);
+      var view = new questionEditView();
+      view.render(id);
     },
     defaultAction: function(actions){
-      mainHomeView.render();
+      var view = new mainHomeView();
+      view.render();
     }
   });
 
