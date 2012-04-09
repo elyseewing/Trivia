@@ -51,5 +51,5 @@ define([
     }
 
   });
-  return new questionEditView;
+  return questionEditView;
 });

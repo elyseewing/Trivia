@@ -9,5 +9,5 @@ define([
       $("body").html(mainHomeTemplate);
     }
   });
-  return new mainHomeView;
+  return mainHomeView;
 });

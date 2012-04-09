@@ -11,5 +11,5 @@ define([
     }
   });
  
-  return new questionsCollection;
+  return questionsCollection;
 });

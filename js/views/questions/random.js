@@ -44,5 +44,5 @@ define([
     }
 
   });
-  return new questionRandomView;
+  return questionRandomView;
 });
