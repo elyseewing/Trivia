@@ -11,7 +11,7 @@ define([
   var questionRandomView = Backbone.View.extend({
     el: $("body"),
     initialize: function() {
-      this.collection = questionsCollection;
+      this.collection = new questionsCollection();
       _.bindAll(this, 'render');
       //this.collection.bind('render', this.render, this);
       this.collection.fetch({success: this.render });
