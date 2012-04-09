@@ -22,7 +22,8 @@ define([
     }, 
 
     events: {
-      "click #save":"saveQuestion"
+      "click #save":"saveQuestion",
+      "click #random-question":"randomQuestion"
     },
 
     saveQuestion: function(event) {
@@ -44,6 +45,9 @@ define([
         };
         model.save(attributes, options);
       }
+    },
+    randomQuestion: function() {
+        Backbone.history.navigate('/', {trigger: true});
     }
 
   });

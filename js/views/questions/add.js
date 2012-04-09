@@ -14,7 +14,7 @@ define([
         
     }, 
     render: function() {
-      var data = {
+        var data = {
         model: new questionsModel(), 
 	    _: _
       };
@@ -23,7 +23,8 @@ define([
     }, 
 
     events: {
-      "click #add":"addQuestion"
+      "click #add":"addQuestion",
+      "click #random-question":"randomQuestion"
     },
 
     addQuestion: function(event) {
@@ -33,9 +34,8 @@ define([
       var attributes = { question: modQuestion, answer: modAnswer };
       var options = {
         success: function() {
-          alert("Question was added.");
-          questionsRandomView.initialize();
-          //questionsEditView.render(model.id);
+          //Backbone.history.navigate('questions/' + model.id + '/edit', {trigger: true});
+          Backbone.history.navigate('/', {trigger: true});
         },
         error: function(model, errors) {
           if (errors != null) {
@@ -49,6 +49,9 @@ define([
       };
       var model = new questionsModel();
       model.save(attributes, options);
+    },
+    randomQuestion: function() {
+        Backbone.history.navigate('/', {trigger: true});
     }
 
   });

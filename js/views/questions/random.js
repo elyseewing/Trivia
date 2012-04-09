@@ -28,18 +28,19 @@ define([
     },
 
     events: {
-      "click #next-question":"nextQuestion"
+      "click #next-question":"nextQuestion",
+      "click #add-question" :"addAQuestion",
+      "click #edit-question":"editAQuestion"
     },
 
-    nextQuestion: function(event) {
-      event.preventDefault();
-      var data = {
-        model: this.collection.models[0],
-        $: $,
-        _ : _
-      };
-      var compiledTemplate = _.template(questionRandomTemplate, data);
-      $("body").html(compiledTemplate);
+    nextQuestion: function() { 
+        Backbone.history.navigate('/', {trigger: true});
+    },
+    addAQuestion: function() {
+        Backbone.history.navigate('questions/add', {trigger: true});
+    },
+    editAQuestion: function() {
+        Backbone.history.navigate('questions/' + this.collection.models[0].id + '/edit', {trigger: true});
     }
 
   });

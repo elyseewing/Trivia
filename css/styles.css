@@ -93,6 +93,13 @@ body > footer a {
     font-size: 12px;
     text-decoration: none;
 }
+body > footer span.link {
+    color: #999;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline;
+    cursor: pointer;
+}
 
 @media (max-width: 480px) {
     body > section,
