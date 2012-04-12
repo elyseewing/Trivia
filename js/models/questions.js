@@ -6,7 +6,9 @@ define([
     initialize: function() {
       
     },
-    urlRoot: "http://api.elysedougherty.com/question",
+    url: function() {
+      return "http://api.elysedougherty.com/question/" + this.get("id");
+    },
     validate: function(attributes) {
       var errors = [];
       if (!/\S/.test(attributes.question))

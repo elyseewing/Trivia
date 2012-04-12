@@ -13,13 +13,16 @@ define([
     initialize: function() {
       this.collection = new questionsCollection();
       _.bindAll(this, 'render');
-      //this.collection.bind('render', this.render, this);
       this.collection.fetch({success: this.render });
     },
     render: function() {
+      this.model = new questionsModel();
+      if (this.collection.models.length > 0) {
+	// since the API only ever loads a collection containing one model, take the first one
+	this.model = this.collection.models[0];
+      }
       var data = {
-        // collection.models array only contains one element
-        model: this.collection.models[0],
+        model: this.model,
         $: $,
         _ : _
       };
@@ -40,7 +43,6 @@ define([
         Backbone.history.navigate('questions/add', {trigger: true});
     },
     editAQuestion: function() {
-	console.log("Reached function");
         Backbone.history.navigate('questions/' + this.collection.models[0].id + '/edit', {trigger: true});
     }
 

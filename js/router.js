@@ -26,7 +26,7 @@ define([
     },
     editQuestion: function(id) {
       var view = new questionEditView();
-      view.render(id);
+      view.initialize(id);
     },
     defaultAction: function(actions){
       var view = new mainHomeView();

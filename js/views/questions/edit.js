@@ -8,16 +8,16 @@ define([
 ], function($, _, Backbone, questionsModel, questionsCollection, questionEditTemplate) {
   var questionEditView = Backbone.View.extend({
     el: $("body"),
-    initialize: function() {
-        //this.bind('render', this.render, this);
-        //_.bindAll(this, 'render');
+    initialize: function(id) {
+	this.model = new questionsModel();
+	this.model.id = id;
+	this.collection = new questionsCollection(this.model);
+        _.bindAll(this, 'render');
+        this.collection.fetch({success: this.render });
     }, 
-    render: function(id) {
-      this.collection = new questionsCollection();
-      this.collection.fetch();
-      console.log(this.collection.models);
+    render: function() {
       var data = {
-        model: questionsCollection.get(id),
+        model: this.collection.models[0],
         _ : _
       };
       var compiledTemplate = _.template(questionEditTemplate, data);
@@ -33,21 +33,17 @@ define([
       event.preventDefault();
       var modQuestion = $('#question').val();
       var modAnswer = $('#answer').val();
-      var questionID = $('#id').val();
-      if (questionID > 0)
-      {
-        var model = questionsCollection.get(questionID);
-        var attributes = { question: modQuestion, answer: modAnswer };
-        var options = {
-          success: function() {
-              alert("Question was updated.");
-          },
-          error: function(model, errors) {
+      var model = this.collection.models[0];
+      var attributes = { question: modQuestion, answer: modAnswer };
+      var options = {
+        success: function() {
+            alert("Question was updated.");
+        },
+        error: function(model, errors) {
             $('.errors').html(errors.join("<br/>")).show();
-          }
-        };
-        model.save(attributes, options);
-      }
+        }
+      };
+      model.save(attributes, options);
     },
     randomQuestion: function() {
         Backbone.history.navigate('/', {trigger: true});
