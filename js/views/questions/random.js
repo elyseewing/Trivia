@@ -40,6 +40,7 @@ define([
         Backbone.history.navigate('questions/add', {trigger: true});
     },
     editAQuestion: function() {
+	console.log("Reached function");
         Backbone.history.navigate('questions/' + this.collection.models[0].id + '/edit', {trigger: true});
     }
 

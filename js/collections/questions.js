@@ -7,7 +7,7 @@ define([
   var questionsCollection = Backbone.Collection.extend({
     model: questionsModel, 
     url: function() {
-      return "http://localhost:3000/question/";
+      return "http://api.elysedougherty.com/question/";
     }
   });
  

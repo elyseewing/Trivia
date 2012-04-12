@@ -13,6 +13,9 @@ define([
         //_.bindAll(this, 'render');
     }, 
     render: function(id) {
+      this.collection = new questionsCollection();
+      this.collection.fetch();
+      console.log(this.collection.models);
       var data = {
         model: questionsCollection.get(id),
         _ : _

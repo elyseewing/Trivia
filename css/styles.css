@@ -34,9 +34,9 @@ h1 {
 .next-question {
     font-size: 18px;
     line-height: 1.4;
-    margin: 25px auto 0;
+    margin: 25px auto 0px auto;
     text-align: center;
-    width: 550px;
+    width: 150px;
 }
 .next-question a {
    color: #660000;

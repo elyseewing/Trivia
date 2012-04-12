@@ -6,7 +6,7 @@ define([
     initialize: function() {
       
     },
-    urlRoot: "http://localhost:3000/question",
+    urlRoot: "http://api.elysedougherty.com/question",
     validate: function(attributes) {
       var errors = [];
       if (!/\S/.test(attributes.question))
