@@ -9,7 +9,6 @@ define([
     url: function() {
       return "http://api.elysedougherty.com/question/";
     }
-  });
- 
+  }); 
   return questionsCollection;
 });

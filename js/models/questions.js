@@ -17,9 +17,7 @@ define([
 	errors.push("Answer cannot be blank.");
       if (errors.length > 0)
 	return errors;
-    }
-    
+    }    
   });
   return questionsModel;
-
 });
