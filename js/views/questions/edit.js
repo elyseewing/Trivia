@@ -9,15 +9,18 @@ define([
   var questionEditView = Backbone.View.extend({
     el: $("body"),
     initialize: function(id) {
-	this.model = new questionsModel();
-	this.model.id = id;
-	this.collection = new questionsCollection(this.model);
-        _.bindAll(this, 'render');
-        this.collection.fetch({success: this.render });
+	if (id != null)
+	{
+	  _.bindAll(this, 'render');
+	  _.bindAll(this, 'saveQuestion');
+	  this.model = new questionsModel();
+	  this.model.id = id;
+	  this.model.fetch({ success: this.render });
+	}
     }, 
     render: function() {
       var data = {
-        model: this.collection.models[0],
+        model: this.model,
         _ : _
       };
       var compiledTemplate = _.template(questionEditTemplate, data);
@@ -33,8 +36,10 @@ define([
       event.preventDefault();
       var modQuestion = $('#question').val();
       var modAnswer = $('#answer').val();
-      var model = this.collection.models[0];
-      var attributes = { question: modQuestion, answer: modAnswer };
+      var modFlag = ($('#flag').is(':checked') == true) ? 1 : 0;
+      console.log(modFlag);
+      //var model = this.model;
+      var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag  };
       var options = {
         success: function() {
             alert("Question was updated.");
@@ -43,7 +48,7 @@ define([
             $('.errors').html(errors.join("<br/>")).show();
         }
       };
-      model.save(attributes, options);
+      this.model.save(attributes, options);
     },
     randomQuestion: function() {
         Backbone.history.navigate('/', {trigger: true});

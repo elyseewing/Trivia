@@ -7,7 +7,10 @@ define([
       
     },
     url: function() {
-      return "http://api.elysedougherty.com/question/" + this.get("id");
+      if (this.id != undefined) {
+        return "http://api.elysedougherty.com/question/" + this.id;
+      }
+      return "http://api.elysedougherty.com/question";
     },
     validate: function(attributes) {
       var errors = [];

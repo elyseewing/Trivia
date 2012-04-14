@@ -13,6 +13,7 @@ define([
     initialize: function() {
       this.collection = new questionsCollection();
       _.bindAll(this, 'render');
+      _.bindAll(this, 'editAQuestion');
       this.collection.fetch({success: this.render });
     },
     render: function() {

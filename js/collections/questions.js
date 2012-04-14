@@ -7,6 +7,9 @@ define([
   var questionsCollection = Backbone.Collection.extend({
     model: questionsModel, 
     url: function() {
+      if (this.id != undefined) {
+        return "http://api.elysedougherty.com/question/" + this.id;
+      }
       return "http://api.elysedougherty.com/question/";
     }
   }); 

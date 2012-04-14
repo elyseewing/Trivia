@@ -39,6 +39,7 @@ define([
         },
         error: function(model, errors) {
           if (errors != null) {
+		console.log("Errors: " + errors);
 	        $('.errors').html(errors.join("<br/>")).show();
 	      }
 	      else

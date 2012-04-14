@@ -5,12 +5,16 @@
     <span class="hidden target" id="target"><%= model.get('answer') %></span>
   </div>
 
-  <div class="next-question"><a href="" id="next-question">Next question</a></div>
+  <div class="next-question"><a href="" class="hidden" id="next-question">Next question</a></div>
 </section>
 <footer>
   <h1>Trivia</h1>
   <span id="add-question"  class="link">Add Question</span>
   <span id="edit-question" class="link">Edit Question</span>
+  <% if (model.get("flag") == 1) { %>
+       <span class="flagged">FLAGGED</span>
+  <% } %>
+
 </footer>
 
 <script type="text/javascript">
@@ -18,6 +22,7 @@
         if (jQuery('#target').hasClass('hidden')) {
             jQuery('#target').removeClass('hidden');
             jQuery('#show-answer').addClass('hidden');
+	    jQuery('#next-question').removeClass('hidden');
         }
     }
 </script>
