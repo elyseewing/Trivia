@@ -37,8 +37,6 @@ define([
       var modQuestion = $('#question').val();
       var modAnswer = $('#answer').val();
       var modFlag = ($('#flag').is(':checked') == true) ? 1 : 0;
-      console.log(modFlag);
-      //var model = this.model;
       var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag  };
       var options = {
         success: function() {
