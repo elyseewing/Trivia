@@ -3,9 +3,9 @@
   <form id="edit-question">
     <textarea id="question" placeholder="What is this?"><%= model.get('question') %></textarea>
     <textarea id="answer" placeholder="A Trivia App"><%= model.get('answer') %></textarea>
-    <label for="flag">Flag me? Why?</label>
-      <input type="checkbox" id="flag" <%= (model.get('flag') == 1 ? "checked=checked" : '') %> />
-      <select id="flag-reason" style="margin-left: 20px">
+    <label for="flag">Flag me?</label>
+      <input type="checkbox" id="flag" <%= (model.get('flag') == 1 ? "checked=checked" : '') %> onchange="toggleFlagSelect()" />
+      <select id="flag-reason" class="hidden" style="margin-left: 20px">
 	<option value=""></option>
 	<option value="Wrong answer">I think the answer is wrong</option>
 	<option value="Bad formatting">Some of the formatting is messed up</option>
@@ -19,3 +19,16 @@
   <h1>Trivia</h1>
   <span id="random-question" class="link">Random Question</span>
 </footer>
+
+<script type="text/javascript">
+    function toggleFlagSelect() {
+        if (jQuery('#flag').is(":checked")) {
+            jQuery('#flag-reason').removeClass('hidden');
+        }
+	else {
+	    jQuery('#flag-reason').addClass('hidden');
+	    jQuery('#flag-reason option')[0].selected = true;
+	}
+    }
+</script>
+

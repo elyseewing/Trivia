@@ -54,7 +54,7 @@ define([
 	var attributes = { flag: 1 };
 	var options = {
 	  success: function() {
-	    alert("Question was flagged.");
+	    //alert("Question was flagged.");
 	    $('#flagged').removeClass("hidden");
 	    $('#flag-question').addClass("hidden");
 	  },
