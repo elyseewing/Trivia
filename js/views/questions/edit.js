@@ -37,7 +37,8 @@ define([
       var modQuestion = $('#question').val();
       var modAnswer = $('#answer').val();
       var modFlag = ($('#flag').is(':checked') == true) ? 1 : 0;
-      var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag  };
+      var modReason = $('#flag-reason').val();
+      var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag, flag_text: modReason  };
       var options = {
         success: function() {
             alert("Question was updated.");

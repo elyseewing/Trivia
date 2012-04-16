@@ -3,8 +3,14 @@
   <form id="edit-question">
     <textarea id="question" placeholder="What is this?"><%= model.get('question') %></textarea>
     <textarea id="answer" placeholder="A Trivia App"><%= model.get('answer') %></textarea>
-    <label for="flag">Flag?</label>
+    <label for="flag">Flag me? Why?</label>
       <input type="checkbox" id="flag" <%= (model.get('flag') == 1 ? "checked=checked" : '') %> />
+      <select id="flag-reason" style="margin-left: 20px">
+	<option value=""></option>
+	<option value="Wrong answer">I think the answer is wrong</option>
+	<option value="Bad formatting">Some of the formatting is messed up</option>
+	<option value="Something else">Lolz, something else is broken</option>
+      </select>
     <button id="save">Save Question</button>
     <input type="hidden" id="id" name="id" value="<%= model.get('id') %>" />
   </form>
