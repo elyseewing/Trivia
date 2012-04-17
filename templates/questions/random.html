@@ -7,6 +7,18 @@
   </div>
 
   <div class="next-question"><a href="" class="hidden" id="next-question">Next question</a></div>
+
+  <div class="tags">
+    <ul>
+      <% if (model.get('tags').length > 0) { %>
+	<% for (var i = 0; i < model.get('tags').length; i++) { %>
+	    <li class="tag"><%= model.get('tags')[i]["tag"] %></li>
+	<% } %>
+      <% } %>
+      <li class="add"><span id="add-tag" style="cursor: pointer">Add Tag</span></li>
+    </ul>
+  </div>
+
 </section>
 <footer>
   <h1>Trivia</h1>
