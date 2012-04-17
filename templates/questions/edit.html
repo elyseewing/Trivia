@@ -5,9 +5,9 @@
     <textarea id="answer" placeholder="A Trivia App"><%= model.get('answer') %></textarea>
     <label for="flag">Flag me?</label>
       <input type="checkbox" id="flag" <%= (model.get('flag') == 1 ? "checked=checked" : '') %> onchange="toggleFlagSelect()" />
-      <select id="flag-reason" class="hidden" style="margin-left: 20px">
+      <select id="flag-reason" <%= (model.get('flag') == 0 ? "class=hidden" : '') %> style="margin-left: 20px">
 	<option value=""></option>
-	<option value="Wrong answer">I think the answer is wrong</option>
+	<option value="Wrong answer" <%= (model.get('flag_text') != "" ? "selected=true" : '') %>>I think the answer is wrong</option>
 	<option value="Bad formatting">Some of the formatting is messed up</option>
 	<option value="Something else">Lolz, something else is broken</option>
       </select>
