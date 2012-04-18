@@ -6,10 +6,10 @@
     <label for="flag">Flag me?</label>
       <input type="checkbox" id="flag" <%= (model.get('flag') == 1 ? "checked=checked" : '') %> onchange="toggleFlagSelect()" />
       <select id="flag-reason" <%= (model.get('flag') == 0 ? "class=hidden" : '') %> style="margin-left: 20px">
-	<option value=""></option>
-	<option value="Wrong answer" <%= (model.get('flag_text') != "" ? "selected=true" : '') %>>I think the answer is wrong</option>
-	<option value="Bad formatting">Some of the formatting is messed up</option>
-	<option value="Something else">Lolz, something else is broken</option>
+	<option value="" <%= (model.get('flag_text') == null ? "selected=true" : '') %>></option>
+	<option value="Wrong answer" <%= (model.get('flag_text') == "Wrong answer" ? "selected=true" : '') %>>I think the answer is wrong</option>
+	<option value="Bad formatting" <%= (model.get('flag_text') == "Bad formatting" ? "selected=true" : '') %>>Some of the formatting is messed up</option>
+	<option value="Something else" <%= (model.get('flag_text') == "Something else" ? "selected=true" : '') %>>Lolz, something else is broken</option>
       </select>
     <button id="save">Save Question</button>
     <input type="hidden" id="id" name="id" value="<%= model.get('id') %>" />
@@ -31,4 +31,3 @@
 	}
     }
 </script>
-

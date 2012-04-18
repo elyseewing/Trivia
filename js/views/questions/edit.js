@@ -23,6 +23,7 @@ define([
         model: this.model,
         _ : _
       };
+      console.log(this.model);
       var compiledTemplate = _.template(questionEditTemplate, data);
       $("body").html(compiledTemplate);
     }, 

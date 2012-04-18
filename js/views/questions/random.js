@@ -28,6 +28,7 @@ define([
 	  this.id = this.model.id;
         }
       }
+      console.log(this.model);
       var data = {
         model: this.model,
         $: $,
@@ -73,6 +74,19 @@ define([
 	var attributes = { question_id: this.model.id, tag: tag_text };
 	var options = {
 	  success: function() {
+	    this.model = new questionsModel();
+	    this.model.id = question_id;
+	    this.model.fetch({ 
+	      success: function() {
+		var data = {
+        	  model: this.model,
+        	  $: $,
+        	  _ : _
+  		};
+      		var compiledTemplate = _.template(questionRandomTemplate, data);
+      		$("body").html(compiledTemplate);
+	      }
+	    });
   	  },
 	  error: function() {
 	    $('.errors').html(errors.join("<br/>")).show();
@@ -80,9 +94,6 @@ define([
 	};
 	var tag_model = new tagsModel();
 	tag_model.save(attributes, options);
-	this.model = new questionsModel();
-	this.model.id = question_id;
-	this.model.fetch({success: this.render });
     }
 
   });
