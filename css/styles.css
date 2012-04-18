@@ -53,6 +53,23 @@ h1 {
     padding-left: 20px; 
     color: #888;
 }
+.tags li.tag:hover {
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.tags li.tag span.show {
+    display: inline;
+}
+.tags li.tag span.noshow {
+    display: none;
+}
+.tags li.tag:hover span.show {
+    display: none;
+}
+.tags li.tag:hover span.noshow {
+    display: inline;
+}
 .tags li.add {
     color: #000000;
     cursor: pointer;

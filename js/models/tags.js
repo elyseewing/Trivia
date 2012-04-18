@@ -7,6 +7,9 @@ define([
 
     },
     url: function() {
+      if (this.id != undefined) {
+        return "http://api.elysedougherty.com/tag/" + this.id;
+      }
       return "http://api.elysedougherty.com/tag";
     }
   });

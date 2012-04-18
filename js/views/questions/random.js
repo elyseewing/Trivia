@@ -17,6 +17,7 @@ define([
       _.bindAll(this, 'editAQuestion');
       _.bindAll(this, 'flagAQuestion');
       _.bindAll(this, 'addATag');
+      _.bindAll(this, 'removeATag');
       this.collection.fetch({success: this.render });
     },
     render: function() {
@@ -43,7 +44,8 @@ define([
       "click #add-question" :"addAQuestion",
       "click #edit-question":"editAQuestion",
       "click #flag-question":"flagAQuestion",
-      "click #add-tag":"addATag"
+      "click #add-tag":"addATag",
+      "click .tag":"removeATag"
     },
 
     nextQuestion: function() { 
@@ -94,8 +96,45 @@ define([
 	};
 	var tag_model = new tagsModel();
 	tag_model.save(attributes, options);
-    }
+    },
+    removeATag: function(e) {
+	var yes = confirm("Are you sure you want to remove this tag?");
+	if (yes == true)
+	{
+	  console.log("You said yes");
+	  var clickedEl = $(e.currentTarget);
+	  var id = clickedEl.attr("id");
+	  var question_id = this.model.id;	
 
+   	  var options = {
+            success: function() {
+	      var reload_model = new questionsModel();
+	      reload_model.id = question_id;
+              reload_model.fetch({ 
+	        success: function() {
+                  var data = {
+                    model: reload_model,
+                    $: $,
+                    _ : _
+                  };
+                  var compiledTemplate = _.template(questionRandomTemplate, data);
+                    $("body").html(compiledTemplate);
+                } 
+    	      });
+            },
+            error: function() {
+              alert("Tag could not be removed.");
+            }
+          };
+	  var tag_model = new tagsModel();
+	  tag_model.id = id; 
+	  tag_model.fetch({ success: tag_model.destroy(options) });
+	}
+	else
+	{
+	  console.log("You said no");
+	}
+    }   
   });
   return questionRandomView;
 });
