@@ -44,6 +44,7 @@ h1 {
 
 .tags {
     text-align: right;
+    font-size: 14px;
 }
 .tags ul {
     margin-top: 15px;
@@ -55,7 +56,7 @@ h1 {
 }
 .tags li.tag:hover {
     color: #000000;
-    text-decoration: underline;
+    text-decoration: line-through;
     cursor: pointer;
 }
 .tags li.tag span.show {

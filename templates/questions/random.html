@@ -12,7 +12,7 @@
     <ul>
       <% if (model.get('tags').length > 0) { %>
 	<% for (var i = 0; i < model.get('tags').length; i++) { %>
-	    <li class="tag" id="<%= model.get('tags')[i]["id"] %>"><span class="show"><%= model.get('tags')[i]["tag"] %></span><span class="noshow">Remove Tag</span></li>
+	    <li class="tag" id="<%= model.get('tags')[i]["id"] %>"><span class="show"><%= model.get('tags')[i]["tag"] %></span><span class="noshow"><%= model.get('tags')[i]["tag"] %></span></li>
 	<% } %>
       <% } %>
       <li class="add"><span id="add-tag" style="cursor: pointer">Add Tag</span></li>
@@ -22,13 +22,13 @@
 </section>
 <footer>
   <h1>Trivia</h1>
-  <span id="add-question"  class="link">Add Question</span>
-  <span id="edit-question" class="link">Edit Question</span>
+  <span id="add-question"  class="link">Add</span>
+  <span id="edit-question" class="link">Edit</span>
   <% if (model.get("flag") == 1) { %>
        <span class="flagged">FLAGGED</span>
   <% } else { %>
        <span id="flagged" class="hidden flagged">FLAGGED</span>
-       <span id="flag-question" class="link">Flag Question</span>
+       <span id="flag-question" class="link">Flag</span>
   <% } %>
 
 </footer>
