@@ -78,30 +78,33 @@ define([
     },
     addATag: function() {
 	var tag_text = prompt("How should we tag this question?", "");
-	var question_id = this.model.id;
-	var attributes = { question_id: this.model.id, tag: tag_text };
-	var options = {
-	  success: function() {
-	    this.model = new questionsModel();
-	    this.model.id = question_id;
-	    this.model.fetch({ 
-	      success: function() {
-		var data = {
-        	  model: this.model,
-        	  $: $,
-        	  _ : _
-  		};
-      		var compiledTemplate = _.template(questionRandomTemplate, data);
-      		$("body").html(compiledTemplate);
-	      }
-	    });
-  	  },
-	  error: function() {
-	    $('.errors').html(errors.join("<br/>")).show();
-	  }
-	};
-	var tag_model = new tagsModel();
-	tag_model.save(attributes, options);
+	if (tag_text)
+	{
+	  var question_id = this.model.id;
+	  var attributes = { question_id: this.model.id, tag: tag_text };
+	  var options = {
+	    success: function() {
+	      this.model = new questionsModel();
+	      this.model.id = question_id;
+	      this.model.fetch({ 
+	        success: function() {
+		  var data = {
+        	    model: this.model,
+        	    $: $,
+        	    _ : _
+  		  };
+      		  var compiledTemplate = _.template(questionRandomTemplate, data);
+      		  $("body").html(compiledTemplate);
+	        }
+	      });
+    	    },
+  	    error: function() {
+	      $('.errors').html(errors.join("<br/>")).show();
+	    }
+	  };
+	  var tag_model = new tagsModel();
+	  tag_model.save(attributes, options);
+	}
     },
     removeATag: function(e) {
 	var yes = confirm("Are you sure you want to remove this tag?");
