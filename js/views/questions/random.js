@@ -115,7 +115,7 @@ define([
 	  var question_id = this.model.id;	
 
    	  var options = {
-            success: function() {
+           success: function() {
 	      var reload_model = new questionsModel();
 	      reload_model.id = question_id;
               reload_model.fetch({ 
