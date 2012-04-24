@@ -58,10 +58,10 @@ define([
         Backbone.history.navigate('/', {trigger: true});
     },
     addAQuestion: function() {
-        Backbone.history.navigate('questions/add', {trigger: true});
+        Backbone.history.navigate('questions/add/', {trigger: true});
     },
     editAQuestion: function() {
-	Backbone.history.navigate('questions/' + this.model.id + '/edit', {trigger: true});
+	Backbone.history.navigate('questions/' + this.model.id + '/edit/', {trigger: true});
     },
     flagAQuestion: function() {
 	var attributes = { flag: 1 };

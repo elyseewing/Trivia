@@ -44,7 +44,7 @@ define([
       var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag, flag_text: modReason  };
       var options = {
         success: function() {
-	    Backbone.history.navigate('questions/' + questionID, {trigger: true});
+	    Backbone.history.navigate('questions/' + questionID + '/', {trigger: true});
         },
         error: function(model, errors) {
             $('.errors').html(errors.join("<br/>")).show();

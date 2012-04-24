@@ -10,14 +10,15 @@ define([
 ], function($, _, Backbone, mainHomeView, questionAddView, questionEditView, questionRandomView ){
   var AppRouter = Backbone.Router.extend({
     routes: {
-      ""                   :"randomQuestion",
-      "/"                  :"randomQuestion",
-      "questions/add"      :"newQuestion",
-      "questions/:id"	   :"randomQuestion",
-      "questions/:id/edit" :"editQuestion",
-      "*actions"           :"defaultAction"
+      ""                    :"randomQuestion",
+      "/"                   :"randomQuestion",
+      "questions/add/"      :"newQuestion",
+      "questions/:id/"	    :"randomQuestion",
+      "questions/:id/edit/" :"editQuestion",
+      "*actions"            :"defaultAction"
     },
     randomQuestion: function(id) {
+      console.log("Rendering front page for question ID " + id);
       var view = new questionRandomView();
       view.initialize(id);
     },

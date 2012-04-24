@@ -34,7 +34,7 @@ define([
       var attributes = { question: modQuestion, answer: modAnswer };
       var options = {
         success: function() {
-          Backbone.history.navigate('questions/' + model.id, {trigger: true});
+          Backbone.history.navigate('questions/' + model.id + '/', {trigger: true});
           //Backbone.history.navigate('/', {trigger: true});
         },
         error: function(model, errors) {
