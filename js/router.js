@@ -13,12 +13,13 @@ define([
       ""                   :"randomQuestion",
       "/"                  :"randomQuestion",
       "questions/add"      :"newQuestion",
+      "questions/:id"	   :"randomQuestion",
       "questions/:id/edit" :"editQuestion",
       "*actions"           :"defaultAction"
     },
-    randomQuestion: function() {
+    randomQuestion: function(id) {
       var view = new questionRandomView();
-      view.initialize();
+      view.initialize(id);
     },
     newQuestion: function() {
       var view = new questionAddView();

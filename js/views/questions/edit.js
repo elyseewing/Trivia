@@ -4,8 +4,9 @@ define([
   'Backbone',
   'models/questions',
   'collections/questions',
-  'text!templates/questions/edit.html'
-], function($, _, Backbone, questionsModel, questionsCollection, questionEditTemplate) {
+  'text!templates/questions/edit.html',
+  'text!templates/questions/random.html'
+], function($, _, Backbone, questionsModel, questionsCollection, questionEditTemplate, questionRandomTemplate) {
   var questionEditView = Backbone.View.extend({
     el: $("body"),
     initialize: function(id) {
@@ -23,7 +24,6 @@ define([
         model: this.model,
         _ : _
       };
-      console.log(this.model);
       var compiledTemplate = _.template(questionEditTemplate, data);
       $("body").html(compiledTemplate);
     }, 
@@ -39,10 +39,12 @@ define([
       var modAnswer = $('#answer').val();
       var modFlag = ($('#flag').is(':checked') == true) ? 1 : 0;
       var modReason = $('#flag-reason').val();
+      var questionID = this.model.id;
+      
       var attributes = { question: modQuestion, answer: modAnswer, flag: modFlag, flag_text: modReason  };
       var options = {
         success: function() {
-            alert("Question was updated.");
+	    Backbone.history.navigate('questions/' + questionID, {trigger: true});
         },
         error: function(model, errors) {
             $('.errors').html(errors.join("<br/>")).show();

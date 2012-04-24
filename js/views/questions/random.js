@@ -11,14 +11,21 @@ define([
 ], function($, _, Backbone, questionsModel, tagsModel, questionsCollection, questionRandomTemplate, questionAddView, questionEditView ) {
   var questionRandomView = Backbone.View.extend({
     el: $("body"),
-    initialize: function() {
+    initialize: function(id) {
       this.collection = new questionsCollection();
       _.bindAll(this, 'render');
       _.bindAll(this, 'editAQuestion');
       _.bindAll(this, 'flagAQuestion');
       _.bindAll(this, 'addATag');
       _.bindAll(this, 'removeATag');
-      this.collection.fetch({success: this.render });
+      if (id == undefined) {
+        this.collection.fetch({ success: this.render });
+      }
+      else {
+	this.model = new questionsModel();
+	this.model.id = id;
+	this.model.fetch({ success: this.render });
+      }
     },
     render: function() {
       if (this.model == undefined)
@@ -29,7 +36,6 @@ define([
 	  this.id = this.model.id;
         }
       }
-      console.log(this.model);
       var data = {
         model: this.model,
         $: $,
@@ -55,7 +61,7 @@ define([
         Backbone.history.navigate('questions/add', {trigger: true});
     },
     editAQuestion: function() {
-        Backbone.history.navigate('questions/' + this.collection.models[0].id + '/edit', {trigger: true});
+	Backbone.history.navigate('questions/' + this.model.id + '/edit', {trigger: true});
     },
     flagAQuestion: function() {
 	var attributes = { flag: 1 };
@@ -101,7 +107,6 @@ define([
 	var yes = confirm("Are you sure you want to remove this tag?");
 	if (yes == true)
 	{
-	  console.log("You said yes");
 	  var clickedEl = $(e.currentTarget);
 	  var id = clickedEl.attr("id");
 	  var question_id = this.model.id;	
@@ -129,10 +134,6 @@ define([
 	  var tag_model = new tagsModel();
 	  tag_model.id = id; 
 	  tag_model.fetch({ success: tag_model.destroy(options) });
-	}
-	else
-	{
-	  console.log("You said no");
 	}
     }   
   });
