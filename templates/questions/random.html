@@ -1,5 +1,16 @@
 
 <section id="question">
+
+  <div class="tags" style="margin-bottom: 20px">
+    <ul>
+      <% if (window.sessionStorage["tag"] == undefined || window.sessionStorage["tag"] == "") { %>
+	<li class="add"><span id="add-filter" style="cursor: pointer">Add Filter</span></li>
+      <% } else { %>
+        <li class="tag" id="applied"><span class="show"><%= window.sessionStorage["tag"] %></span><span class="noshow"><%= window.sessionStorage["tag"] %></span></li>
+      <% } %>
+    </ul>
+  </div>
+
   <h1><%= model.get('question') %></h1>
   <div class="answer">
     <a class="trigger" onclick="toggle()" id="show-answer">Show answer</a>

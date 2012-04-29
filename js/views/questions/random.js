@@ -50,6 +50,7 @@ define([
       "click #add-question" :"addAQuestion",
       "click #edit-question":"editAQuestion",
       "click #flag-question":"flagAQuestion",
+      "click #add-filter":"addAFilter",
       "click #add-tag":"addATag",
       "click .tag":"removeATag"
     },
@@ -76,6 +77,13 @@ define([
 	};
 	this.model.save(attributes, options);
     },
+    addAFilter: function() {
+      	var tag_text = prompt("What tag do you want to apply?", "");
+	if (tag_text) {
+	  window.sessionStorage.setItem("tag", tag_text);
+	  window.location.reload();
+	}
+    },
     addATag: function() {
 	var tag_text = prompt("How should we tag this question?", "");
 	if (tag_text)
@@ -99,7 +107,7 @@ define([
 	      });
     	    },
   	    error: function() {
-	      $('.errors').html(errors.join("<br/>")).show();
+	      alert("Hmmm, something went wrong.");
 	    }
 	  };
 	  var tag_model = new tagsModel();
@@ -112,31 +120,38 @@ define([
 	{
 	  var clickedEl = $(e.currentTarget);
 	  var id = clickedEl.attr("id");
-	  var question_id = this.model.id;	
+	  if (id != "applied")
+	  {
+	    var question_id = this.model.id;	
 
-   	  var options = {
-           success: function() {
-	      var reload_model = new questionsModel();
-	      reload_model.id = question_id;
-              reload_model.fetch({ 
-	        success: function() {
-                  var data = {
-                    model: reload_model,
-                    $: $,
-                    _ : _
-                  };
-                  var compiledTemplate = _.template(questionRandomTemplate, data);
-                    $("body").html(compiledTemplate);
-                } 
-    	      });
-            },
-            error: function() {
-              alert("Tag could not be removed.");
-            }
-          };
-	  var tag_model = new tagsModel();
-	  tag_model.id = id; 
-	  tag_model.fetch({ success: tag_model.destroy(options) });
+   	    var options = {
+             success: function() {
+	        var reload_model = new questionsModel();
+	        reload_model.id = question_id;
+                reload_model.fetch({ 
+	          success: function() {
+                    var data = {
+                      model: reload_model,
+                      $: $,
+                      _ : _
+                    };
+                    var compiledTemplate = _.template(questionRandomTemplate, data);
+                      $("body").html(compiledTemplate);
+                  } 
+    	        });
+              },
+              error: function() {
+                alert("Tag could not be removed.");
+              }
+            };
+	    var tag_model = new tagsModel();
+	    tag_model.id = id; 
+	    tag_model.fetch({ success: tag_model.destroy(options) });
+	  }
+	  else {
+	    window.sessionStorage.setItem("tag", "");
+	    window.location.reload();
+	  }
 	}
     }   
   });
