@@ -10,6 +10,9 @@ define([
       if (this.id != undefined) {
         return "http://api.elysedougherty.com/question/" + this.id;
       }
+      if (window.sessionStorage["tag"] != undefined && window.sessionStorage["tag"] != "") {
+	return "http://api.elysedougherty.com/tag/" + window.sessionStorage["tag"];
+      }
       return "http://api.elysedougherty.com/question/";
     }
   }); 

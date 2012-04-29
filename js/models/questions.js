@@ -10,7 +10,10 @@ define([
       if (this.id != undefined) {
         return "http://api.elysedougherty.com/question/" + this.id;
       }
-      return "http://api.elysedougherty.com/question";
+      if (window.sessionStorage["tag"] != undefined && window.sessionStorage["tag"] != "") {
+	return "http://api.elysedougherty.com/tag/" + window.sessionStorage["tag"];
+      }
+      return "http://api.elysedougherty.com/question/";
     },
     validate: function(attributes) {
       var errors = [];
